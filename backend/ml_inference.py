@@ -6,7 +6,7 @@ from detection.main import detect_accident
 
 def analyze_video(video_path):
     print(video_path)
-    cap = cv2.VideoCapture("honolulu.mp4")
+    cap = cv2.VideoCapture(video_path)
     print(cap.isOpened())
 
     while cap.isOpened():
