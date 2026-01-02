@@ -1,0 +1,2 @@
+import os
+UPLOAD_FOLDER_PATH=os.getenv("UPLOAD_FOLDER_PATH")

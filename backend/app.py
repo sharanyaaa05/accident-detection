@@ -1,20 +1,17 @@
-from flask import Flask, jsonify, request
-# from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+load_dotenv()
 
+from flask import Flask, jsonify, request
 import os
 from ml_inference import analyze_video
-
+import uuid
+from config import UPLOAD_FOLDER_PATH
 
 
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/DB'
-
-# db = SQLAlchemy(app)
 
 
-UPLOAD_FOLDER = "uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.post("/analyze")
 def analyze():
@@ -22,12 +19,11 @@ def analyze():
         return jsonify({"error": "No video uploaded"}), 400
 
     file = request.files["file"]
-    video_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    request_id = uuid.uuid4()
+    video_path = os.path.join(UPLOAD_FOLDER_PATH, f"{request_id}.mp4")
     file.save(video_path)
 
-    print("Video received:", file.filename)
-
-    result = analyze_video("video.mp4")
+    result = analyze_video(video_path)
 
     print("Prediction result:", result)
 
@@ -39,6 +35,7 @@ def get_route():
 
 
 if __name__ == '__main__':
-    print("🚀 Flask server starting on http://127.0.0.1:5000")
+    os.makedirs(UPLOAD_FOLDER_PATH,exist_ok=True)
+    print("Flask server starting on http://127.0.0.1:5000")
 
     app.run(host="0.0.0.0", port=5000, debug=True)
