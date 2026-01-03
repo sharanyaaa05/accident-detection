@@ -13,8 +13,8 @@ app = Flask(__name__)
 
 
 
-@app.post("/analyze")
-def analyze():
+@app.post("/detection")
+def detection():
     if "file" not in request.files:
         return jsonify({"error": "No video uploaded"}), 400
 
