@@ -3,6 +3,7 @@ WEIGHTS = {
     "speeding": 0.20,
     "phone": 0.15,
     "drowsy": 0.30,
+    "signal violation": 0.10,
     "accident": 1.00
 }
 
