@@ -12,7 +12,7 @@ from risk_engine import compute_risk
 
 #cctv video config
 
-VIDEO_PATH = 0 #"data/demo.mp4"
+VIDEO_PATH = "data/demo.mp4"
 FPS_FALLBACK = 25
 
 SPEED_LIMIT = 60          # km/h (approx)
