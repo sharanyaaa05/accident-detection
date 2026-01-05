@@ -252,7 +252,13 @@ while True:
     else:
         crash_flash_counter = 0
 
-    #drowsiness
+    # drowsiness - commented out due to mediapipe issue
+    # frame, play_alarm = drowsy_detector.process(frame, thresholds=DROWSINESS_THRESHOLDS)
+    # if play_alarm:
+    #     events.add("drowsy")
+
+    # risk score
+    risk = compute_risk(events)
 
     frame, alarm = drowsy_detector.process(
         frame, thresholds=DROWSINESS_THRESHOLDS
