@@ -11,8 +11,18 @@ from utils import box_center, iou
 from risk_engine import compute_risk
 
 #cctv video config
+root = tk.Tk()
+root.withdraw()
 
-VIDEO_PATH = "data/demo.mp4"
+VIDEO_PATH = filedialog.askopenfilename(
+    title="Select video",
+    filetypes=[("Video files", "*.mp4 *.avi *.mov *.mkv")]
+)
+
+if not VIDEO_PATH:
+    exit()
+    
+#VIDEO_PATH = 0 #webcam
 FPS_FALLBACK = 25
 
 SPEED_LIMIT = 60          # km/h (approx)
