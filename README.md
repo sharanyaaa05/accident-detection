@@ -1,133 +1,122 @@
-AI-Based Road Accident Detection & Emergency Alert System:
+# Vision-Based Road Accident Detection & Emergency Alert System
 
-An intelligent, real-time road accident detection system that analyzes CCTV and video feeds using computer vision and multi-evidence temporal reasoning to automatically detect accidents and trigger emergency alerts. The system is designed to be scalable, explainable, and deployable on existing surveillance infrastructure without additional sensors.
+An intelligent, real-time road accident detection and alert system that analyzes CCTV and video feeds using computer vision and multi-evidence temporal reasoning. The system is designed to be scalable, explainable, and deployable on existing surveillance infrastructure without requiring additional sensors.
 
-Key Idea:
+---
 
-Unlike traditional accident detection systems that rely on a single visual cue or frame-wise prediction, this system fuses multiple independent evidences across time, including:
+## Overview
 
-1. vehicle collision geometry
+Unlike traditional frame-wise accident detection approaches, this system fuses multiple independent evidences across time to mimic real-world crash dynamics. By combining collision geometry, motion anomalies, and tracking instability, the system significantly reduces false positives and enables confidence-based emergency response.
 
-2. sudden relative speed drops
+---
 
-3. tracking instability caused by crash dynamics
+## Key Idea
 
-4. Rule-based reasoning and behavioural analysis 
+Accident detection decisions are made using **temporal multi-evidence reasoning**, rather than isolated visual cues. The system jointly analyzes:
 
-This significantly reduces false alarms and enables trustworthy, confidence-based emergency response.
+- Vehicle collision geometry  
+- Sudden relative speed drops  
+- Tracking instability caused by crash dynamics  
+- Rule-based behavioral analysis  
 
-Features:
+This multi-signal validation improves robustness and interpretability.
 
-Real-Time Accident Detection using multi-evidence temporal reasoning
+---
 
-YOLOv8-based Vehicle Detection & Tracking
+## Features
 
-Low False Positives through multi-signal validation
+- Real-time accident detection using temporal multi-evidence reasoning  
+- YOLOv8-based vehicle detection and tracking  
+- Reduced false alarms through multi-signal validation  
+- Explainable confidence score instead of binary output  
+- CCTV-native deployment (no additional sensors required)  
+- Backend-ready emergency alert triggering  
+- Accident localization via camera ID / coordinates  
+- Scalable and lightweight architecture  
+- Incident logging and analytics support  
 
-Explainable Confidence Score instead of binary output
+---
 
-CCTV-Native Deployment (no extra sensors required)
+## System Architecture
 
-Automated Emergency Alert Triggering (backend-ready)
-
-Accident Location Mapping via camera ID / coordinates
-
-Centralized Monitoring Dashboard (extendable)
-
-Incident Logging & Analytics
-
-Scalable & Lightweight Architecture
-
-System Architecture
 Video Feed (CCTV / Dashcam)
-        ↓
-     OpenCV
-(Video Capture & Frames)
-        ↓
-     YOLOv8
-(Vehicle Detection + Tracking)
-        ↓
+↓
+OpenCV (Frame Capture & Preprocessing)
+↓
+YOLOv8 (Vehicle Detection & Tracking)
+↓
 Multi-Evidence Analysis
-(Collision + Speed Drop + Tracking Anomaly)
-        ↓
+(Collision Geometry + Speed Drop + Tracking Anomaly)
+↓
 Temporal Validation
-        ↓
+↓
 Accident Detection + Confidence Score
-        ↓
+↓
 Backend Alert System → Emergency Authorities
 
-Detection Logic (Simplified)
+## Detection Logic (Simplified)
 
 An accident is confirmed when:
+- A vehicle collision is detected (IoU or center-distance based),  
+- AND a sudden speed drop OR tracking instability occurs,  
+- AND the event persists across a short temporal window.
 
-Vehicle collision is detected (IoU or center distance)
+This avoids isolated false detections and better reflects real crash behavior.
 
-AND sudden speed drop OR tracking instability occurs
+---
 
-AND the event persists across a short time window
+## Confidence Scoring
 
-This mimics real crash dynamics instead of relying on isolated frames.
+The confidence score incorporates:
+- Collision certainty  
+- Motion abnormality  
+- Tracking reliability  
+- Model detection confidence  
 
-The confidence score reflects:
+This enables interpretable and risk-aware decision making.
 
-collision certainty
+---
 
-motion abnormality
-
-tracking reliability
-
-model detection confidence
-
-Emergency Alert Integration (Backend-Ready)
+## Emergency Alert Integration
 
 The system is designed to integrate with:
-
-Ambulance dispatch systems
-
-Police control rooms
-
-Traffic management centers
+- Ambulance dispatch systems  
+- Police control rooms  
+- Traffic management centers  
 
 Alerts can include:
+- Accident location  
+- Timestamp  
+- Confidence level  
+- Supporting visual evidence  
 
-accident location
+---
 
-time
+## Future Enhancements
 
-confidence level
+- Live CCTV stream integration  
+- Real-time alerts (SMS / App / Web)  
+- Accident severity estimation  
+- Ambulance GPS tracking  
+- Automatic hospital assignment  
+- Traffic rerouting alerts  
+- Dashcam and mobile video support  
+- Smart city platform integration  
+- Continuous model improvement  
 
-supporting evidence
+---
 
-Future Enhancements
+## Use Cases
 
-Live CCTV stream integration
+- Smart cities and traffic control centers  
+- Highway surveillance systems  
+- Emergency response automation  
+- Accident analytics and prevention studies  
 
-Real-time emergency alerts (SMS / App / Web)
+---
 
-Accident severity estimation
+## Authors
 
-Ambulance GPS tracking
+Developed as part of an AI-based emergency response project focusing on real-world deployment, explainability, and scalable computer vision systems.
 
-Automatic hospital assignment
 
-Traffic rerouting alerts
-
-Dashcam & mobile video support
-
-Smart city platform integration
-
-Continuous model improvement
-
-Use Cases
-
-Smart cities & traffic control centers
-
-Highway surveillance systems
-
-Emergency response automation
-
-Accident analytics & prevention studies
-
-Authors
-
-Developed as part of an AI-based emergency response project / hackathon submission focusing on real-world impact, explainability, and scalable deployment.
